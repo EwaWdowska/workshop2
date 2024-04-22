@@ -12,7 +12,13 @@ public class Main {
       user.setEmail("kowalski@gmail.com");
        user.setPassword("DobreHaslo!");
 
+        user.setUserName("Skowron");
+        user.setEmail("skowron@gmail.com");
+        user.setPassword("SuperHaslo!");
+
         userDao.create(user);
         userDao.read(1);
+        userDao.update(userDao.read(1));
+        userDao.delete(2);
     }
 }
