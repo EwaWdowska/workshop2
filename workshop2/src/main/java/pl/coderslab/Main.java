@@ -1,17 +1,24 @@
 package pl.coderslab;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import pl.coderslab.entity.User;
+import pl.coderslab.entity.UserDao;
+
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        UserDao userDao = new UserDao();
+        User user = new User();
+       user.setUserName("Kowalski");
+      user.setEmail("kowalski@gmail.com");
+       user.setPassword("DobreHaslo!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        user.setUserName("Skowron");
+        user.setEmail("skowron@gmail.com");
+        user.setPassword("SuperHaslo!");
+
+        userDao.create(user);
+        userDao.read(1);
+        userDao.update(userDao.read(1));
+        userDao.delete(2);
     }
 }

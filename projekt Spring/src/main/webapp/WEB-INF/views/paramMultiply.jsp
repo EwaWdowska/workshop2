@@ -1,16 +1,18 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ewa-wdowska
-  Date: 30.06.2024
-  Time: 15:07
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Param Multiply</title>
 </head>
 <body>
-
+<table>
+    <c:forEach begin="1" end="${rows}" varStatus="row">
+        <tr>
+            <c:forEach begin="1" end="${cols}" varStatus="col">
+                <td>${col.index * row.index}</td>
+            </c:forEach>
+        </tr>
+    </c:forEach>
+</table>
 </body>
 </html>
