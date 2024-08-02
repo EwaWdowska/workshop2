@@ -1,6 +1,8 @@
 package pl.coderslab.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import pl.coderslab.domain.Author;
 import pl.coderslab.domain.Book;
 import pl.coderslab.domain.Category;
@@ -23,4 +25,21 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> readBooksByRating(int rating);
 
     Book getFirstByCategoryOrderByTitle(Category category);
+
+    @Query("SELECT b FROM Book b WHERE b.title =?1")
+    List <Book> findBookByTitle(String title);
+
+    @Query("SELECT b FROM Book b WHERE b.category= :cat")
+    List<Book> findByCategory (@Param("cat") Category category);
+
+
+    @Query("SELECT b FROM Book b WHERE b.rating BETWEEN ?1 AND ?2")
+    List<Book> getByRatingBetween(int min, int max);
+
+    @Query("SELECT b FROM Book b WHERE b.publisher = ?1")
+    List<Book> findBooksByPublisher(Publisher publisher);
+
+    @Query(value = "SELECT * FROM books WHERE category_id = ?1 ORDER BY title LIMIT 1", nativeQuery = true)
+    Book findFirstBookFromCategory(long categoryId);
+
 }
